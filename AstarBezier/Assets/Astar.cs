@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using UnityEngine;
 
 public class Astar
 {
-    private Vector2 startPos;
-    private Vector2 endPos;
+    
+    private Vector2 startPos, endPos;
     private Cell[,] grid;
     private int height, width;
     
@@ -33,28 +30,24 @@ public class Astar
         {
             for (int j = -1; j <= 1; j++)
             {
-                if (j == 0 && i == 0)
-                    continue;
-                /*
-                 // Only X and Y
+                // Only X and Y
                 if ((Math.Abs(i) + Math.Abs(j)) != 1)
                     continue;
-                */
-                
+
                 int newX = j + origin.x;
                 int newY = i + origin.y;
                 if (CheckBoundaries(newX, newY))
                 {
-                    neighbours.Add(grid[newX, newY]);   
-                }   
+                    neighbours.Add(grid[newX, newY]);
+                }
             }
         }
-        
-        
+
         return neighbours;
     }
     
     int GetDistance(Cell nodeA, Cell nodeB) {
+        
         int dstX = Mathf.Abs(nodeA.x - nodeB.x);
         int dstY = Mathf.Abs(nodeA.y - nodeB.y);
 
@@ -73,10 +66,8 @@ public class Astar
         HashSet<Cell> closedSet = new HashSet<Cell>();
         
         openSet.Add(startCell);
-        int count = 0;
         while (!openSet.IsEmpty())
         {
-            count++;
             Cell current = openSet.Pop();
             closedSet.Add(current);
 
@@ -102,12 +93,12 @@ public class Astar
 
         if (openSet.IsEmpty())
         {
-            return null;   
+            return null;
         }
         return RetracePath(startCell, endCell);
     }
 
-    public List<Cell> RetracePath(Cell startCell, Cell endCell)
+    private List<Cell> RetracePath(Cell startCell, Cell endCell)
     {
         Cell current = endCell;
         List<Cell> path = new List<Cell>();

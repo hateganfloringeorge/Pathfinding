@@ -15,7 +15,7 @@ public class DrawChecpoint : MonoBehaviour
         {
             for (int i = 0; i < checkpoints.Length - 1; i++)
             {
-                Debug.DrawLine(checkpoints[i].transform.position, checkpoints[i + 1].transform.position, Color.blue,
+                Debug.DrawLine(checkpoints[i].transform.position, checkpoints[i + 1].transform.position, Color.cyan,
                     0, true);
             }
         }
